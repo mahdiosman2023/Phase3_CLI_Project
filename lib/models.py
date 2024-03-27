@@ -18,7 +18,7 @@ class Patient(Base):
     patient_name = Column(String)
     dentist_id = Column(Integer, ForeignKey('dentists.id'))
 
-    # Define back reference to Dentist if needed
+    
     dentist = relationship("Dentist", foreign_keys=[dentist_id])
 
 
