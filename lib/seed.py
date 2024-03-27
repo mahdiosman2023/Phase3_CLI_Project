@@ -1,6 +1,6 @@
 from models import  Base, Dentist, Patient, Appointment
 from faker import Faker
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, null
 from sqlalchemy.orm import sessionmaker
 import random
 from datetime import date
@@ -26,12 +26,12 @@ print("Seeding for Patients")
 print("Seeding for Appointments")
 
 for i in range(3):
-    dentist = Dentist(dentist_name=fakedata.name(), patient_id=random.randrange(10))
+    dentist = Dentist(dentist_name=fakedata.name(), dentist_specialty=null(), patient_id=random.randrange(3))
     mysession.add(dentist)
 mysession.commit()
 
 for i in range(10):
-    patient = Patient(patient_name=fakedata.name(), dentist_id=random.randrange(3))
+    patient = Patient(patient_name=fakedata.name(), dentist_id=random.randrange(10))
     mysession.add(patient)
 mysession.commit()
 
