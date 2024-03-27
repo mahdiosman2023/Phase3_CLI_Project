@@ -21,6 +21,7 @@ appointment_date = date(2024, 4, 15)
 
 
 
+
 print("Seeding for Dentists")
 print("Seeding for Patients")
 print("Seeding for Appointments")
@@ -28,7 +29,8 @@ print("Seeding for Appointments")
 for i in range(3):
     dentist = Dentist(dentist_name=fakedata.name(), dentist_specialty=null(), patient_id=random.randrange(3))
     mysession.add(dentist)
-mysession.commit()
+    mysession.commit()
+
 
 for i in range(10):
     patient = Patient(patient_name=fakedata.name(), dentist_id=random.randrange(10))
