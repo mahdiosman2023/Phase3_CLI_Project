@@ -3,7 +3,7 @@ from faker import Faker
 from sqlalchemy import create_engine, null
 from sqlalchemy.orm import sessionmaker
 import random
-from datetime import date
+
 
 
 
@@ -16,10 +16,6 @@ mysession = sessioncreator()
 fakedata = Faker()
 fake = Faker()
 
-appointment_date = date(2024, 4, 15)
-
-
-
 
 
 print("Seeding for Dentists")
@@ -30,17 +26,20 @@ for i in range(3):
     dentist = Dentist(dentist_name=fakedata.name(), dentist_specialty=null(), patient_id=random.randrange(3))
     mysession.add(dentist)
     mysession.commit()
+    
 
 
 for i in range(10):
     patient = Patient(patient_name=fakedata.name(), dentist_id=random.randrange(10))
     mysession.add(patient)
-mysession.commit()
+    mysession.commit()
+    
 
 for i in range(10):
-    appoinment = Appointment(appointment_date=appointment_date, appoinment_time=random.randrange(10), patient_id=random.randrange(10), dentist_id=random.randrange(3))
+    appoinment = Appointment(appointment_date=fake.date_this_month(), appoinment_time=fake.time(), patient_id=random.randrange(10), dentist_id=random.randrange(3))
     mysession.add(appoinment)
-mysession.commit()
+    mysession.commit()
+    
 
 print('All Seeded Dentists')
 print('All Seeded Patients')
