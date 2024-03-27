@@ -10,6 +10,7 @@ class Dentist(Base):
     dentist_name = Column(String)
     dentist_specialty = Column(String)
     patient_id = Column(Integer, ForeignKey('patients.id'))
+    
     patients = relationship("Patient", foreign_keys=[patient_id])
 
 class Patient(Base):
@@ -18,7 +19,6 @@ class Patient(Base):
     patient_name = Column(String)
     dentist_id = Column(Integer, ForeignKey('dentists.id'))
 
-    
     dentist = relationship("Dentist", foreign_keys=[dentist_id])
 
 
